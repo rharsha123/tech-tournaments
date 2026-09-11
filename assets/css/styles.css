@@ -15,14 +15,10 @@ body {
   padding: 40px 0;
 }
 
-.section-alt {
-  background: #1e293b;
-}
-
 .site-header {
-  background: #0f172a;
-  padding: 15px 0;
-  border-bottom: 1px solid #334155;
+  background: #020617;
+  padding: 12px 0;
+  border-bottom: 1px solid #1f2937;
 }
 
 .header-inner {
@@ -33,39 +29,62 @@ body {
 
 .logo {
   font-weight: bold;
+  letter-spacing: 0.05em;
 }
 
 .nav {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
-.nav a {
+.nav-tab {
+  background: #0f172a;
+  border: 1px solid #1f2937;
   color: #94a3b8;
-  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
-.nav a:hover {
-  color: #3b82f6;
+.nav-tab.active {
+  background: #3b82f6;
+  color: #fff;
+  border-color: #3b82f6;
+}
+
+.admin-link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.tab-section {
+  display: none;
+}
+
+.tab-section.active {
+  display: block;
 }
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .card {
-  background: #0f172a;
-  padding: 16px;
+  background: #020617;
   border-radius: 8px;
-  border: 1px solid #334155;
+  border: 1px solid #1f2937;
+  padding: 14px;
 }
 
 .media-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
+  margin-top: 16px;
 }
 
 .media-item img,
@@ -74,21 +93,49 @@ body {
   border-radius: 8px;
 }
 
-.btn {
-  padding: 8px 16px;
-  border-radius: 20px;
-  border: none;
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  border-top: 1px solid #1f2937;
+  background: #020617;
+  font-size: 0.85rem;
+}
+
+/* Admin */
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-tabs {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.admin-tab {
+  background: #0f172a;
+  border: 1px solid #1f2937;
+  color: #94a3b8;
+  padding: 6px 12px;
+  border-radius: 999px;
   cursor: pointer;
+  margin-right: 6px;
 }
 
-.btn.primary {
+.admin-tab.active {
   background: #3b82f6;
-  color: white;
+  color: #fff;
 }
 
-.btn.secondary {
-  background: #334155;
-  color: white;
+.admin-section {
+  display: none;
+  margin-top: 10px;
+}
+
+.admin-section.active {
+  display: block;
 }
 
 .contact-form {
@@ -111,9 +158,43 @@ body {
   color: #e5e7eb;
 }
 
-.site-footer {
-  text-align: center;
-  padding: 20px;
-  border-top: 1px solid #334155;
-  background: #0f172a;
+.btn {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #334155;
+  color: #fff;
+}
+
+.admin-list {
+  margin-top: 12px;
+}
+
+.admin-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #020617;
+  border: 1px solid #1f2937;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+}
+
+.admin-item button {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  cursor: pointer;
 }
