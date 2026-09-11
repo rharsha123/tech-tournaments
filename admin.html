@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Tech Tournaments</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Admin · Tech Tournaments</div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+
+      <!-- LOGIN -->
+      <div id="authSection">
+        <h2>Admin Login</h2>
+        <form id="loginForm" class="contact-form">
+          <div class="form-row">
+            <label>Email</label>
+            <input id="adminEmail" type="email" required />
+          </div>
+          <div class="form-row">
+            <label>Password</label>
+            <input id="adminPassword" type="password" required />
+          </div>
+          <button class="btn primary">Login</button>
+        </form>
+      </div>
+
+      <!-- ADMIN PANEL -->
+      <div id="adminPanel" style="display:none;">
+        <h2>Admin Panel</h2>
+        <button id="logoutBtn" class="btn secondary">Logout</button>
+
+        <hr />
+
+        <!-- FIXTURE FORM -->
+        <h3>Add Fixture</h3>
+        <form id="fixtureForm" class="contact-form">
+          <div class="form-row"><label>Match ID</label><input id="fixtureMatchId" required /></div>
+          <div class="form-row"><label>Team A</label><input id="fixtureTeamA" required /></div>
+          <div class="form-row"><label>Team B</label><input id="fixtureTeamB" required /></div>
+          <div class="form-row"><label>Date</label><input id="fixtureDate" type="date" required /></div>
+          <div class="form-row"><label>Venue</label><input id="fixtureVenue" required /></div>
+          <button class="btn primary">Save Fixture</button>
+        </form>
+
+        <hr />
+
+        <!-- RESULT FORM -->
+        <h3>Add Result</h3>
+        <form id="resultForm" class="contact-form">
+          <div class="form-row"><label>Match ID</label><input id="resultMatchId" required /></div>
+          <div class="form-row"><label>Team A</label><input id="resultTeamA" required /></div>
+          <div class="form-row"><label>Team B</label><input id="resultTeamB" required /></div>
+          <div class="form-row"><label>Score A</label><input id="resultScoreA" type="number" required /></div>
+          <div class="form-row"><label>Score B</label><input id="resultScoreB" type="number" required /></div>
+          <div class="form-row"><label>Status</label><input id="resultStatus" required /></div>
+          <button class="btn primary">Save Result</button>
+        </form>
+
+        <hr />
+
+        <!-- MEDIA UPLOAD -->
+        <h3>Upload Media</h3>
+        <form id="mediaForm" class="contact-form">
+          <div class="form-row"><label>Title</label><input id="mediaTitle" required /></div>
+          <div class="form-row">
+            <label>Type</label>
+            <select id="mediaType" required>
+              <option value="photo">Photo</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+          <div class="form-row"><label>File</label><input id="mediaFile" type="file" required /></div>
+          <button class="btn primary">Upload Media</button>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
