@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin · Tech Tournaments</title>
+  <title>Admin · Tech Tournaments Portal</title>
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -18,7 +17,7 @@
   <main class="section">
     <div class="container">
 
-      <!-- LOGIN -->
+      <!-- Login -->
       <div id="authSection">
         <h2>Admin Login</h2>
         <form id="loginForm" class="contact-form">
@@ -34,55 +33,71 @@
         </form>
       </div>
 
-      <!-- ADMIN PANEL -->
+      <!-- Admin panel -->
       <div id="adminPanel" style="display:none;">
-        <h2>Admin Panel</h2>
-        <button id="logoutBtn" class="btn secondary">Logout</button>
+        <div class="admin-header">
+          <h2>Admin Panel</h2>
+          <button id="logoutBtn" class="btn secondary">Logout</button>
+        </div>
 
-        <hr />
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="fixtures">Fixtures</button>
+          <button class="admin-tab" data-admin-tab="results">Results</button>
+          <button class="admin-tab" data-admin-tab="media">Media</button>
+        </div>
 
-        <!-- FIXTURE FORM -->
-        <h3>Add Fixture</h3>
-        <form id="fixtureForm" class="contact-form">
-          <div class="form-row"><label>Match ID</label><input id="fixtureMatchId" required /></div>
-          <div class="form-row"><label>Team A</label><input id="fixtureTeamA" required /></div>
-          <div class="form-row"><label>Team B</label><input id="fixtureTeamB" required /></div>
-          <div class="form-row"><label>Date</label><input id="fixtureDate" type="date" required /></div>
-          <div class="form-row"><label>Venue</label><input id="fixtureVenue" required /></div>
-          <button class="btn primary">Save Fixture</button>
-        </form>
+        <!-- Fixtures admin -->
+        <section id="admin-fixtures" class="admin-section active">
+          <h3>Manage Fixtures</h3>
+          <form id="fixtureForm" class="contact-form">
+            <div class="form-row"><label>Match ID</label><input id="fixtureMatchId" required /></div>
+            <div class="form-row"><label>Team A</label><input id="fixtureTeamA" required /></div>
+            <div class="form-row"><label>Team B</label><input id="fixtureTeamB" required /></div>
+            <div class="form-row"><label>Date</label><input id="fixtureDate" type="date" required /></div>
+            <div class="form-row"><label>Venue</label><input id="fixtureVenue" required /></div>
+            <button class="btn primary">Save Fixture</button>
+          </form>
 
-        <hr />
+          <h4>Existing Fixtures</h4>
+          <div id="adminFixturesList" class="admin-list"></div>
+        </section>
 
-        <!-- RESULT FORM -->
-        <h3>Add Result</h3>
-        <form id="resultForm" class="contact-form">
-          <div class="form-row"><label>Match ID</label><input id="resultMatchId" required /></div>
-          <div class="form-row"><label>Team A</label><input id="resultTeamA" required /></div>
-          <div class="form-row"><label>Team B</label><input id="resultTeamB" required /></div>
-          <div class="form-row"><label>Score A</label><input id="resultScoreA" type="number" required /></div>
-          <div class="form-row"><label>Score B</label><input id="resultScoreB" type="number" required /></div>
-          <div class="form-row"><label>Status</label><input id="resultStatus" required /></div>
-          <button class="btn primary">Save Result</button>
-        </form>
+        <!-- Results admin -->
+        <section id="admin-results" class="admin-section">
+          <h3>Manage Results</h3>
+          <form id="resultForm" class="contact-form">
+            <div class="form-row"><label>Match ID</label><input id="resultMatchId" required /></div>
+            <div class="form-row"><label>Team A</label><input id="resultTeamA" required /></div>
+            <div class="form-row"><label>Team B</label><input id="resultTeamB" required /></div>
+            <div class="form-row"><label>Score A</label><input id="resultScoreA" type="number" required /></div>
+            <div class="form-row"><label>Score B</label><input id="resultScoreB" type="number" required /></div>
+            <div class="form-row"><label>Status</label><input id="resultStatus" required /></div>
+            <button class="btn primary">Save Result</button>
+          </form>
 
-        <hr />
+          <h4>Existing Results</h4>
+          <div id="adminResultsList" class="admin-list"></div>
+        </section>
 
-        <!-- MEDIA UPLOAD -->
-        <h3>Upload Media</h3>
-        <form id="mediaForm" class="contact-form">
-          <div class="form-row"><label>Title</label><input id="mediaTitle" required /></div>
-          <div class="form-row">
-            <label>Type</label>
-            <select id="mediaType" required>
-              <option value="photo">Photo</option>
-              <option value="video">Video</option>
-            </select>
-          </div>
-          <div class="form-row"><label>File</label><input id="mediaFile" type="file" required /></div>
-          <button class="btn primary">Upload Media</button>
-        </form>
+        <!-- Media admin -->
+        <section id="admin-media" class="admin-section">
+          <h3>Upload Media</h3>
+          <form id="mediaForm" class="contact-form">
+            <div class="form-row"><label>Title</label><input id="mediaTitle" required /></div>
+            <div class="form-row">
+              <label>Type</label>
+              <select id="mediaType" required>
+                <option value="photo">Photo</option>
+                <option value="video">Video</option>
+              </select>
+            </div>
+            <div class="form-row"><label>File</label><input id="mediaFile" type="file" required /></div>
+            <button class="btn primary">Upload Media</button>
+          </form>
 
+          <h4>Existing Media</h4>
+          <div id="adminMediaList" class="admin-list"></div>
+        </section>
       </div>
     </div>
   </main>
