@@ -1,14 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0b3b2e" />
-    <meta name="description" content="SNB Sports Tournament — cricket and badminton fixtures, scores, results and highlights." />
-    <title>SNB Sports Tournament 2026</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Tournaments</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo">Tech Tournaments</div>
+      <nav class="nav">
+        <a href="#fixtures">Fixtures</a>
+        <a href="#results">Results</a>
+        <a href="#media">Photos & Videos</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="fixtures" class="section">
+      <div class="container">
+        <h2>Fixtures</h2>
+        <div id="fixturesContainer" class="cards"></div>
+      </div>
+    </section>
+
+    <section id="results" class="section section-alt">
+      <div class="container">
+        <h2>Results</h2>
+        <div id="resultsContainer" class="cards"></div>
+      </div>
+    </section>
+
+    <section id="media" class="section">
+      <div class="container">
+        <h2>Photos & Videos</h2>
+        <div id="mediaContainer" class="media-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Tech Tournaments</p>
+    </div>
+  </footer>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <script src="assets/js/main.js"></script>
+</body>
 </html>
