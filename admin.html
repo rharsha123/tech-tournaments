@@ -7,6 +7,7 @@
 
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -33,7 +34,7 @@
         </form>
       </div>
 
-      <!-- Admin panel -->
+      <!-- Admin Panel -->
       <div id="adminPanel" style="display:none;">
         <div class="admin-header">
           <h2>Admin Panel</h2>
@@ -46,9 +47,9 @@
           <button class="admin-tab" data-admin-tab="media">Media</button>
         </div>
 
-        <!-- Fixtures admin -->
+        <!-- Fixtures -->
         <section id="admin-fixtures" class="admin-section active">
-          <h3>Manage Fixtures</h3>
+          <h3>Add Fixture</h3>
           <form id="fixtureForm" class="contact-form">
             <div class="form-row"><label>Match ID</label><input id="fixtureMatchId" required /></div>
             <div class="form-row"><label>Team A</label><input id="fixtureTeamA" required /></div>
@@ -62,9 +63,9 @@
           <div id="adminFixturesList" class="admin-list"></div>
         </section>
 
-        <!-- Results admin -->
+        <!-- Results -->
         <section id="admin-results" class="admin-section">
-          <h3>Manage Results</h3>
+          <h3>Add Result</h3>
           <form id="resultForm" class="contact-form">
             <div class="form-row"><label>Match ID</label><input id="resultMatchId" required /></div>
             <div class="form-row"><label>Team A</label><input id="resultTeamA" required /></div>
@@ -79,7 +80,7 @@
           <div id="adminResultsList" class="admin-list"></div>
         </section>
 
-        <!-- Media admin -->
+        <!-- Media -->
         <section id="admin-media" class="admin-section">
           <h3>Upload Media</h3>
           <form id="mediaForm" class="contact-form">
@@ -98,6 +99,7 @@
           <h4>Existing Media</h4>
           <div id="adminMediaList" class="admin-list"></div>
         </section>
+
       </div>
     </div>
   </main>
