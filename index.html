@@ -3,51 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Tournaments</title>
+  <title>Tech Tournaments Portal</title>
 
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="assets/images/favicon.png" />
 </head>
-
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo">Tech Tournaments</div>
       <nav class="nav">
-        <a href="#fixtures">Fixtures</a>
-        <a href="#results">Results</a>
-        <a href="#media">Photos & Videos</a>
-        <a href="admin.html">Admin</a>
+        <button class="nav-tab active" data-tab="fixtures">Fixtures</button>
+        <button class="nav-tab" data-tab="results">Results</button>
+        <button class="nav-tab" data-tab="media">Photos & Videos</button>
       </nav>
-      <button class="nav-toggle" id="navToggle">☰</button>
+      <a href="admin.html" class="admin-link">Admin</a>
     </div>
   </header>
 
-  <main>
-    <section id="fixtures" class="section">
-      <div class="container">
+  <main class="section">
+    <div class="container">
+
+      <!-- Fixtures tab -->
+      <section id="tab-fixtures" class="tab-section active">
         <h2>Fixtures</h2>
+        <p class="tab-desc">Upcoming and scheduled matches.</p>
         <div id="fixturesContainer" class="cards"></div>
-      </div>
-    </section>
+      </section>
 
-    <section id="results" class="section section-alt">
-      <div class="container">
+      <!-- Results tab -->
+      <section id="tab-results" class="tab-section">
         <h2>Results</h2>
+        <p class="tab-desc">Completed matches and scores.</p>
         <div id="resultsContainer" class="cards"></div>
-      </div>
-    </section>
+      </section>
 
-    <section id="media" class="section">
-      <div class="container">
+      <!-- Media tab -->
+      <section id="tab-media" class="tab-section">
         <h2>Photos & Videos</h2>
+        <p class="tab-desc">Highlights, moments, and media from tournaments.</p>
         <div id="mediaContainer" class="media-grid"></div>
-      </div>
-    </section>
+      </section>
+
+    </div>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© <span id="year"></span> Tech Tournaments</p>
+      <p>© <span id="year"></span> Tech Tournaments Portal</p>
     </div>
   </footer>
 
