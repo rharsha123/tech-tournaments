@@ -20,8 +20,6 @@ npm install
 npm run build
 ```
 
-The production site is generated in `dist/`.
-
 ## GitHub Pages
 
 The project is configured for:
@@ -34,8 +32,8 @@ In GitHub:
 
 1. Open **Settings → Pages**.
 2. Under **Build and deployment → Source**, select **GitHub Actions**.
-3. Push the project to the **master** branch.
-4. The workflow in `.github/workflows/deploy.yml` builds the Vite application and deploys `dist/`.
+3. Push the project to the `master` branch.
+4. The workflow in `.github/workflows/deploy.yml` builds and deploys the site.
 
 ## Current features
 
@@ -53,4 +51,12 @@ In GitHub:
 
 This version is static. Fixtures, scores, standings and gallery content are currently sample data in `src/main.jsx`.
 
-The next phase can move tournament data into structured files and add a free database + protected admin UI so updates can be made without editing source code.
+The next phase should move tournament data into structured files and then add a free database + protected admin UI so updates can be made without editing source code.
+
+## Validation performed
+
+- Repository is configured as a React/Vite project.
+- GitHub Pages project-path requirement checked against current Vite documentation.
+- Deployment workflow corrected so it does not require a missing `package-lock.json`.
+- Vite `base` corrected for `/tech-tournaments/`.
+- Broken Cricket/Badminton navigation anchors corrected.
