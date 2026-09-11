@@ -30,85 +30,61 @@ tabs.forEach(tab => {
 async function loadFixtures() {
   const container = document.getElementById("fixturesContainer");
   container.innerHTML = "<p>Loading fixtures...</p>";
-  try {
-    const snapshot = await db.collection("fixtures").orderBy("date").get();
-    container.innerHTML = "";
-    if (snapshot.empty) {
-      container.innerHTML = "<p>No fixtures yet.</p>";
-      return;
-    }
-    snapshot.forEach(doc => {
-      const f = doc.data();
-      container.innerHTML += `
-        <article class="card">
-          <h3>${f.teamA} vs ${f.teamB}</h3>
-          <p><strong>Date:</strong> ${f.date}</p>
-          <p><strong>Venue:</strong> ${f.venue}</p>
-        </article>
-      `;
-    });
-  } catch (err) {
-    container.innerHTML = "<p style='color:red'>Failed to load fixtures.</p>";
-  }
+  const snapshot = await db.collection("fixtures").orderBy("date").get();
+  container.innerHTML = "";
+  snapshot.forEach(doc => {
+    const f = doc.data();
+    container.innerHTML += `
+      <article class="card">
+        <h3>${f.teamA} vs ${f.teamB}</h3>
+        <p><strong>Date:</strong> ${f.date}</p>
+        <p><strong>Venue:</strong> ${f.venue}</p>
+      </article>
+    `;
+  });
 }
 
 // Results
 async function loadResults() {
   const container = document.getElementById("resultsContainer");
   container.innerHTML = "<p>Loading results...</p>";
-  try {
-    const snapshot = await db.collection("results").orderBy("matchId").get();
-    container.innerHTML = "";
-    if (snapshot.empty) {
-      container.innerHTML = "<p>No results yet.</p>";
-      return;
-    }
-    snapshot.forEach(doc => {
-      const r = doc.data();
-      container.innerHTML += `
-        <article class="card">
-          <h3>${r.teamA} ${r.scoreA} - ${r.scoreB} ${r.teamB}</h3>
-          <p><strong>Status:</strong> ${r.status}</p>
-        </article>
-      `;
-    });
-  } catch (err) {
-    container.innerHTML = "<p style='color:red'>Failed to load results.</p>";
-  }
+  const snapshot = await db.collection("results").orderBy("matchId").get();
+  container.innerHTML = "";
+  snapshot.forEach(doc => {
+    const r = doc.data();
+    container.innerHTML += `
+      <article class="card">
+        <h3>${r.teamA} ${r.scoreA} - ${r.scoreB} ${r.teamB}</h3>
+        <p><strong>Status:</strong> ${r.status}</p>
+      </article>
+    `;
+  });
 }
 
 // Media
 async function loadMedia() {
   const container = document.getElementById("mediaContainer");
   container.innerHTML = "<p>Loading media...</p>";
-  try {
-    const snapshot = await db.collection("media").orderBy("createdAt", "desc").get();
-    container.innerHTML = "";
-    if (snapshot.empty) {
-      container.innerHTML = "<p>No media yet.</p>";
-      return;
+  const snapshot = await db.collection("media").orderBy("createdAt", "desc").get();
+  container.innerHTML = "";
+  snapshot.forEach(doc => {
+    const m = doc.data();
+    if (m.type === "photo") {
+      container.innerHTML += `
+        <div class="media-item">
+          <img src="${m.url}" alt="${m.title}" />
+          <p>${m.title}</p>
+        </div>
+      `;
+    } else {
+      container.innerHTML += `
+        <div class="media-item">
+          <video controls src="${m.url}"></video>
+          <p>${m.title}</p>
+        </div>
+      `;
     }
-    snapshot.forEach(doc => {
-      const m = doc.data();
-      if (m.type === "photo") {
-        container.innerHTML += `
-          <div class="media-item">
-            <img src="${m.url}" alt="${m.title}" />
-            <p>${m.title}</p>
-          </div>
-        `;
-      } else {
-        container.innerHTML += `
-          <div class="media-item">
-            <video controls src="${m.url}"></video>
-            <p>${m.title}</p>
-          </div>
-        `;
-      }
-    });
-  } catch (err) {
-    container.innerHTML = "<p style='color:red'>Failed to load media.</p>";
-  }
+  });
 }
 
 loadFixtures();
