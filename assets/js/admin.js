@@ -14,93 +14,76 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const storage = firebase.storage();
 
-const authSection = document.getElementById("authSection");
-const adminPanel = document.getElementById("adminPanel");
-
-// Auth state
 auth.onAuthStateChanged(user => {
+  document.getElementById("authSection").style.display = user ? "none" : "block";
+  document.getElementById("adminPanel").style.display = user ? "block" : "none";
   if (user) {
-    authSection.style.display = "none";
-    adminPanel.style.display = "block";
     loadAdminFixtures();
     loadAdminResults();
     loadAdminMedia();
-  } else {
-    authSection.style.display = "block";
-    adminPanel.style.display = "none";
   }
 });
 
 // Login
-document.getElementById("loginForm").addEventListener("submit", async e => {
+loginForm.addEventListener("submit", async e => {
   e.preventDefault();
-  const email = document.getElementById("adminEmail").value;
-  const password = document.getElementById("adminPassword").value;
   try {
-    await auth.signInWithEmailAndPassword(email, password);
+    await auth.signInWithEmailAndPassword(adminEmail.value, adminPassword.value);
     alert("Logged in");
   } catch (err) {
-    alert("Login failed: " + err.message);
+    alert(err.message);
   }
 });
 
 // Logout
-document.getElementById("logoutBtn").addEventListener("click", () => auth.signOut());
+logoutBtn.onclick = () => auth.signOut();
 
 // Admin tabs
-const adminTabs = document.querySelectorAll(".admin-tab");
-const adminSections = document.querySelectorAll(".admin-section");
-adminTabs.forEach(tab => {
+document.querySelectorAll(".admin-tab").forEach(tab => {
   tab.addEventListener("click", () => {
     const target = tab.dataset.adminTab;
-    adminTabs.forEach(t => t.classList.remove("active"));
-    adminSections.forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".admin-tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".admin-section").forEach(s => s.classList.remove("active"));
     tab.classList.add("active");
     document.getElementById(`admin-${target}`).classList.add("active");
   });
 });
 
 // Add fixture
-document.getElementById("fixtureForm").addEventListener("submit", async e => {
+fixtureForm.addEventListener("submit", async e => {
   e.preventDefault();
-  const data = {
+  await db.collection("fixtures").add({
     matchId: fixtureMatchId.value,
     teamA: fixtureTeamA.value,
     teamB: fixtureTeamB.value,
     date: fixtureDate.value,
     venue: fixtureVenue.value
-  };
-  await db.collection("fixtures").add(data);
+  });
   alert("Fixture saved");
   fixtureForm.reset();
   loadAdminFixtures();
 });
 
 // Add result
-document.getElementById("resultForm").addEventListener("submit", async e => {
+resultForm.addEventListener("submit", async e => {
   e.preventDefault();
-  const data = {
+  await db.collection("results").add({
     matchId: resultMatchId.value,
     teamA: resultTeamA.value,
     teamB: resultTeamB.value,
     scoreA: Number(resultScoreA.value),
     scoreB: Number(resultScoreB.value),
     status: resultStatus.value
-  };
-  await db.collection("results").add(data);
+  });
   alert("Result saved");
   resultForm.reset();
   loadAdminResults();
 });
 
 // Upload media
-document.getElementById("mediaForm").addEventListener("submit", async e => {
+mediaForm.addEventListener("submit", async e => {
   e.preventDefault();
   const file = mediaFile.files[0];
-  if (!file) {
-    alert("Select a file");
-    return;
-  }
   const ref = storage.ref(`media/${Date.now()}_${file.name}`);
   await ref.put(file);
   const url = await ref.getDownloadURL();
@@ -115,10 +98,9 @@ document.getElementById("mediaForm").addEventListener("submit", async e => {
   loadAdminMedia();
 });
 
-// Admin lists (simple delete)
-
+// Load admin lists
 async function loadAdminFixtures() {
-  const list = document.getElementById("adminFixturesList");
+  const list = adminFixturesList;
   const snapshot = await db.collection("fixtures").orderBy("date").get();
   list.innerHTML = "";
   snapshot.forEach(doc => {
@@ -133,7 +115,7 @@ async function loadAdminFixtures() {
 }
 
 async function loadAdminResults() {
-  const list = document.getElementById("adminResultsList");
+  const list = adminResultsList;
   const snapshot = await db.collection("results").orderBy("matchId").get();
   list.innerHTML = "";
   snapshot.forEach(doc => {
@@ -148,7 +130,7 @@ async function loadAdminResults() {
 }
 
 async function loadAdminMedia() {
-  const list = document.getElementById("adminMediaList");
+  const list = adminMediaList;
   const snapshot = await db.collection("media").orderBy("createdAt", "desc").get();
   list.innerHTML = "";
   snapshot.forEach(doc => {
@@ -162,6 +144,7 @@ async function loadAdminMedia() {
   });
 }
 
+// Delete functions
 window.deleteFixture = async id => {
   await db.collection("fixtures").doc(id).delete();
   loadAdminFixtures();
